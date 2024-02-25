@@ -9,7 +9,7 @@ local Tab1 = Window_1:NewSection("Fireball Assistant")
 local Tab2 = Window_1:NewSection("Punch Assistant")
 local Tab3 = Window_2:NewSection("Tools Assistant")
 local function PlayerFolder(func)
-  for i,v in pairs(game:GetService("Players"):GetPlayer()) do
+  for i,v in pairs(game:GetService("Players"):GetPlayers()) do
     func(i,v)
   end
 end
