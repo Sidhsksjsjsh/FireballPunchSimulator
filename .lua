@@ -27,7 +27,7 @@ local function getEquippedTool()
         local polvus = char and char:FindFirstChildWhichIsA("Tool")
     
         if polvus ~= nil then
-            if v.Name ~= "Punch" then
+            if polvus.Name ~= "Punch" then
                return polvus.Name
             end
         else
