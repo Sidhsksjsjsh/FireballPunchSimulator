@@ -16,7 +16,7 @@ end
 
 local function ToolManage()
   for i,v in pairs(user["Backpack"]:GetChildren()) do
-    if v then
+    if v:IsA("Tool") or v:IsA("HopperBin") then
       v.Parent = user["Character"]
     end
   end
