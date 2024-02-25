@@ -27,7 +27,9 @@ local function getEquippedTool()
         local polvus = char and char:FindFirstChildWhichIsA("Tool")
     
         if polvus ~= nil then
-            return polvus.Name
+            if v.Name ~= "Punch" then
+               return polvus.Name
+            end
         else
             return "nil"
         end
@@ -35,7 +37,7 @@ local function getEquippedTool()
 
 Tab1:CreateToggle("Loop spam",function(value)
         _G.fb = value
-    while wait() do
+    while wait(0.5) do
     if _G.fb == false then break end
       PlayerFolder(function(i,v)
           if v.Name ~= user.Name then
@@ -51,7 +53,7 @@ Tab1:CreateToggle("Loop spam nearest",function(value)
     if _G.fbn == false then break end
       PlayerFolder(function(i,v)
           if v.Name ~= user.Name then
-                if (user.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude < 25 then
+                if (user.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude < 50 then
                   user["Character"][getEquippedTool()]["Event"]:FireServer(v.Character.HumanoidRootPart.Position)
                 end
           end
