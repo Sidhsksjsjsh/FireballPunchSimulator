@@ -2,12 +2,15 @@ local Library =
 loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
 local Window_1 = Library:NewWindow("Main")
 local Window_2 = Library:NewWindow("Tool")
+local Window_3 = Library:NewWindow("Visual")
 
 local user = game:GetService("Players").LocalPlayer
 
 local Tab1 = Window_1:NewSection("Fireball Assistant")
 local Tab2 = Window_1:NewSection("Punch Assistant")
 local Tab3 = Window_2:NewSection("Tools Assistant")
+local Tab4 = Window_2:NewSection("Visual")
+local workspace = game:GetService("Workspace")
 local function PlayerFolder(func)
   for i,v in pairs(game:GetService("Players"):GetPlayers()) do
     func(i,v)
@@ -37,7 +40,7 @@ local function getEquippedTool()
 
 Tab1:CreateToggle("Loop spam",function(value)
         _G.fb = value
-    while wait(0.5) do
+    while wait(1) do
     if _G.fb == false then break end
       PlayerFolder(function(i,v)
           if v.Name ~= user.Name then
@@ -49,7 +52,7 @@ end)
 
 Tab1:CreateToggle("Loop spam nearest",function(value)
         _G.fbn = value
-    while wait() do
+    while wait(0.5) do
     if _G.fbn == false then break end
       PlayerFolder(function(i,v)
           if v.Name ~= user.Name then
@@ -75,5 +78,18 @@ Tab3:CreateToggle("Loop equip multiple tool",function(value)
     while wait() do
       if _G.equip == false then break end
       ToolManage()
+    end
+end)
+
+Tab4:CreateToggle("No damage",function(value)
+    _G.dmg = value
+end)
+
+workspace.ChildAdded:Connect(function(v)
+    for x,i in pairs(v:GetChildren()) do
+      if i.Name == "Main" and _G.dmg == true then
+        i:Destroy()
+        v:Destroy()
+      end
     end
 end)
