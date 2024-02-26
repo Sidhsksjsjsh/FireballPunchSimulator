@@ -104,12 +104,32 @@ Tab5:CreateToggle("ESP Box",function(value)
     ESP.Boxes = value
 end)
 
-Tab6:CreateToggle("Teleport to enemy",function(value)
-    _G.tpenem = value
+Tab6:CreateToggle("Teleport OnTop",function(value)
+    _G.tpenemtop = value
     while wait() do
-      if _G.tpenem == false then break end
+      if _G.tpenemtop == false then break end
       PlayerFolder(function(v)
-        user["Character"]["HumanoidRootPart"]["Position"] = v["Character"]["HumanoidRootPart"]["Position"]
+        user["Character"]["HumanoidRootPart"]["CFrame"] = v["Character"]["HumanoidRootPart"]["CFrame"] * CFrame.Angles(math.rad(-90),0,0) + Vector3.new(0,20,0)
+      end)
+    end
+end)
+
+Tab6:CreateToggle("Teleport under",function(value)
+    _G.tpenemund = value
+    while wait() do
+      if _G.tpenemund == false then break end
+      PlayerFolder(function(v)
+        user["Character"]["HumanoidRootPart"]["CFrame"] = v["Character"]["HumanoidRootPart"]["CFrame"] * CFrame.Angles(math.rad(90),0,0) + Vector3.new(0,-20,0)
+      end)
+    end
+end)
+
+Tab6:CreateToggle("Teleport behind",function(value)
+    _G.tpenembeh = value
+    while wait() do
+      if _G.tpenembeh == false then break end
+      PlayerFolder(function(v)
+        user["Character"]["HumanoidRootPart"]["CFrame"] = v["Character"]["HumanoidRootPart"]["CFrame"] * CFrame.new(0,0,1.5)
       end)
     end
 end)
